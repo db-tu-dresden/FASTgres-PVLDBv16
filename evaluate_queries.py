@@ -479,7 +479,7 @@ def main():
     parser.add_argument("-l", "--learn", default=None, help="Path to update an existing archive or not. "
                                                             "Be sure to only use this option on the hardware your "
                                                             "archive was generated on. "
-                                                            "Defaults to None.")
+                                                            "Defaults to None. Currently not used.")
     parser.add_argument("-est", "--estimators", default=100, help="Numbers of estimators to use. "
                                                                   "Defaults to 100.")
     parser.add_argument("-ed", "--estimatordepth", default=1000, help="Max depth of a single estimator. "

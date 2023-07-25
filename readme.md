@@ -38,10 +38,13 @@ Currently supported workloads include Stack-Overflow [^1] and Join-Order-Benchma
 | featurize.py | Auxiliary file.|
 | fill_eval_dict.py | Script to update unseen predictions within the query archive that is used for training. It is recommended to update the archive after each hint set prediction such that further analysis is improved and redundant query execution can be avoided. **Optional but recommended**.|
 | generate_labels.py | Script to build an initial archive with labeled queries. Building large workload archives like for Stack (6191 queries) may take up days to be created, depending on your hardware, Postgres version, and database settings.  **Required**.|
-| hint_sets.py | Aixiliary file. |
+| hint_sets.py | Auxiliary file. |
 | query.py | Auxiliary file.|
 | update_db_info.py | Script to build database information. Usually, `-mm`, `-l`, `-w` should be the `db_info/<-workload->` directory. **Required**.|
 | utility.py | Auxiliary file.|
+
+Examplary call using stack, precomputed query_objects, and no critical query detection:
+```python3 evaluate_queries.py -db stack -a <path/to/archive.json> -dbip <path/to/db_info/> -qo <path/to/query_objects.pkl> -cqd False```
 
 After `evaluate_queries.py` has been run, predictions can be added to the archive using `fill_eval_dict.py`. 
 
