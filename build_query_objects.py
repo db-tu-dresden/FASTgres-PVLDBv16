@@ -1,18 +1,25 @@
 
+import argparse
 import utility as u
 from query import Query
-from tqdm import tqdm, trange
+from tqdm import tqdm
 from time import time
 
 
 def main():
-    print("Building Query Objects v.02 - xy Edition")
-    path = "path/to/queries/"
+    print("Building Query Objects")
+
+    parser = argparse.ArgumentParser(description="Precompute query objects.")
+    parser.add_argument("querypath", help="<path/to/queries/>")
+    parser.add_argument("-sp", "--savepath", help="<dir/to/save/to/>")
+    args = parser.parse_args()
+
+    path = args.querypath
+    save_dir = args.savepath
     stack_queries = u.get_queries(path)
 
-    save_path = "path/to/save.pkl"
-    save_path_time = "path/to/save_timings.json"
-
+    save_path = save_dir + "query_objects.pkl"
+    save_path_time = save_dir + "query_objects_encoding_time.json"
     query_objects = dict()
     encoding_time = dict()
     for query_name in tqdm(stack_queries):
