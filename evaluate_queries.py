@@ -529,8 +529,10 @@ def main():
 
     args_query_objects_path = args.queryobjects
     if args_query_objects_path is None:
-        raise ValueError("Query Objects -qo not provided")
-    args_query_objects = u.load_pickle(args_query_objects_path)
+        # raise ValueError("Query Objects -qo not provided")
+        args_query_objects = {query_name: Query(query_name, query_path) for query_name in u.get_queries(query_path)}
+    else:
+        args_query_objects = u.load_pickle(args_query_objects_path)
 
     # table -> column -> encoder
     args_label_encoders = load_label_encoders(args_dbinfo_path)
